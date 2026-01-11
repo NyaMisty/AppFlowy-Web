@@ -97,7 +97,7 @@ jobs:
           cache-to: type=gha,mode=max,scope=appflowy_web-${{ matrix.job.arch }}
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.GIT_TAG }}-${{ matrix.job.arch }}
-            ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.tag_latest == 'true' && github.event.inputs.test != 'true') || (github.event_name == 'push' && format('{0}:{1}-{2}', env.IMAGE_NAME, env.LATEST_TAG, matrix.job.arch)) || '' }}
+            ${{ ((github.event_name == 'workflow_dispatch' && github.event.inputs.tag_latest == 'true' && github.event.inputs.test != 'true') || github.event_name == 'push') && format('{0}:{1}-{2}', env.IMAGE_NAME, env.LATEST_TAG, matrix.job.arch) || '' }}
           labels: ${{ steps.meta.outputs.labels }}
           provenance: false
           build-args: |
