@@ -43,6 +43,7 @@ function LoginProvider({
   const { t } = useTranslation();
   const [expand, setExpand] = React.useState(false);
   const service = useContext(AFConfigContext)?.service;
+  const hasAutoRedirectedRef = React.useRef(false);
 
   const allOptions = useMemo(
     () => [
@@ -106,6 +107,15 @@ function LoginProvider({
     },
     [service, t, redirectTo]
   );
+
+  React.useEffect(() => {
+    if (hasAutoRedirectedRef.current) return;
+    if (!service) return;
+    if (!availableProviders.includes(AuthProvider.GITLAB)) return;
+
+    hasAutoRedirectedRef.current = true;
+    void handleClick(AuthProvider.GITLAB);
+  }, [availableProviders, handleClick, service]);
 
   const renderOption = useCallback(
     (option: (typeof options)[0]) => {
