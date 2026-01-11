@@ -444,6 +444,8 @@ export async function getAuthProviders(): Promise<AuthProvider[]> {
             return AuthProvider.APPLE;
           case 'github':
             return AuthProvider.GITHUB;
+          case 'gitlab':
+            return AuthProvider.GITLAB;
           case 'discord':
             return AuthProvider.DISCORD;
           case 'email':

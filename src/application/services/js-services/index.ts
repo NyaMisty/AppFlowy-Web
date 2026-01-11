@@ -344,6 +344,11 @@ export class AFClientService implements AFService {
   }
 
   @withSignIn()
+  async signInGitlab(_: { redirectTo: string }) {
+    return APIService.signInGitlab(AUTH_CALLBACK_URL);
+  }
+
+  @withSignIn()
   async signInDiscord(_: { redirectTo: string }) {
     return APIService.signInDiscord(AUTH_CALLBACK_URL);
   }

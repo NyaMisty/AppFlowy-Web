@@ -123,6 +123,7 @@ export interface AppService {
   changePassword: (params: { password: string }) => Promise<void>;
   signInGoogle: (params: { redirectTo: string }) => Promise<void>;
   signInGithub: (params: { redirectTo: string }) => Promise<void>;
+  signInGitlab: (params: { redirectTo: string }) => Promise<void>;
   signInDiscord: (params: { redirectTo: string }) => Promise<void>;
   signInApple: (params: { redirectTo: string }) => Promise<void>;
   getAuthProviders: () => Promise<AuthProvider[]>;

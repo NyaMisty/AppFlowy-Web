@@ -6,6 +6,7 @@ import { AuthProvider } from '@/application/types';
 import { ReactComponent as AppleSvg } from '@/assets/login/apple.svg';
 import { ReactComponent as DiscordSvg } from '@/assets/login/discord.svg';
 import { ReactComponent as GithubSvg } from '@/assets/login/github.svg';
+import { ReactComponent as GitlabSvg } from '@/assets/login/gitlab.svg';
 import { ReactComponent as GoogleSvg } from '@/assets/login/google.svg';
 import { notify } from '@/components/_shared/notify';
 import { AFConfigContext } from '@/components/main/app.hooks';
@@ -61,6 +62,11 @@ function LoginProvider({
         Icon: GithubSvg,
       },
       {
+        label: t('web.continueWithGitlab'),
+        value: AuthProvider.GITLAB,
+        Icon: GitlabSvg,
+      },
+      {
         label: t('web.continueWithDiscord'),
         value: AuthProvider.DISCORD,
         Icon: DiscordSvg,
@@ -86,6 +92,9 @@ function LoginProvider({
             break;
           case AuthProvider.GITHUB:
             await service?.signInGithub({ redirectTo });
+            break;
+          case AuthProvider.GITLAB:
+            await service?.signInGitlab({ redirectTo });
             break;
           case AuthProvider.DISCORD:
             await service?.signInDiscord({ redirectTo });

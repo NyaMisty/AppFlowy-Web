@@ -307,6 +307,15 @@ export function signInGithub(authUrl: string) {
   window.open(url, '_current');
 }
 
+export function signInGitlab(authUrl: string) {
+  const provider = 'gitlab';
+  const redirectTo = encodeURIComponent(authUrl);
+  const baseURL = axiosInstance?.defaults.baseURL;
+  const url = `${baseURL}/authorize?provider=${provider}&redirect_to=${redirectTo}`;
+
+  window.open(url, '_current');
+}
+
 export function signInDiscord(authUrl: string) {
   const provider = 'discord';
   const redirectTo = encodeURIComponent(authUrl);
